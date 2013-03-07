@@ -35,11 +35,7 @@ public class ZipLineReaderTest {
     }
 
     public void TestBigFile() throws IOException {
-        return;
-        // FIXME: Generate a big one
-        
-        /*
-        ZipLineIterator it = getZip("events.zip");
+        ZipLineIterator it = getZip("big.zip");
 
         int i = 0;
         String line = null;
@@ -47,9 +43,9 @@ public class ZipLineReaderTest {
         for (; it.hasNext(); i++) {
             line = it.next();
         }
-        Assert.assertEquals(i, 8330);
-        String prefix = "...";
-        Assert.assertTrue(line.startsWith(prefix));
-        */
+        Assert.assertEquals(i, 100);
+
+        // Last line is 99 repeated 1000 times -> 2000 times 9
+        Assert.assertTrue(line.matches("9{2000}"));
     }
 }
