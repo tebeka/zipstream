@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mikitebeka.mapred</groupId>
-  <artifactId>zipmapred</artifactId>
+  <artifactId>zipstream</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>zipmapred</name>
+  <name>zipstream</name>
   <url>https://bitbucket.org/tebeka/zipstream</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
