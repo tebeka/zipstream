@@ -13,23 +13,31 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class ZipLineIterator implements Iterator<String> {
 
     private ZipInputStream zin = null;
-    private String name;
+    private String name = null;
+    private String nextLine = null;
+    private BufferedReader reader = null;
     private int pos = 0;
-    private long size;
-    private String nextLine;
-    private BufferedReader reader;
 
     public ZipLineIterator(InputStream in) throws IOException {
         zin = new ZipInputStream(in);
-        ZipEntry entry = zin.getNextEntry();
+
+        nextEntry();
+    }
+
+    private void nextEntry() {
+        nextLine = null;
+
+        if (entry != null) {
+            zin.closeEntry();
+        }
+
+        entry = zin.getNextEntry();
         if (entry == null) {
             return;
         }
 
-        size = entry.getSize();
         name = entry.getName();
         reader = new BufferedReader(new InputStreamReader(zin));
-
         nextLine = reader.readLine();
     }
 
@@ -51,10 +59,12 @@ public class ZipLineIterator implements Iterator<String> {
     @Override
     public String next() {
         String line = nextLine;
+        pos += line.length();
+
         try {
             nextLine = reader.readLine();
         } catch (IOException e) {
-            nextLine = null;
+            nextEntry();
         }
 
         return line;
@@ -85,11 +95,8 @@ public class ZipLineIterator implements Iterator<String> {
     }
 
     public float getProgress() {
-        if (size == 0) {
-            return 1.0f;
-        }
-
-        return (float) (((double) pos) / size);
+        // FIXME
+        return 0.5f;
     }
 
     /**
