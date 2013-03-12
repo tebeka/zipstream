@@ -15,12 +15,18 @@ public class ZipLineReaderTest {
         return new ZipLineIterator(in);
     }
 
-    public void TestSmallFile() throws IOException {
-        ZipLineIterator it = getZip("3.zip");
+    private ArrayList<String> readLines(ZipLineIterator it) {
         ArrayList<String> lines = new ArrayList<String>();
         while (it.hasNext()) {
             lines.add(it.next());
         }
+
+        return lines;
+    }
+
+    public void TestSmallFile() throws IOException {
+        ZipLineIterator it = getZip("3.zip");
+        ArrayList<String> lines = readLines(it);
 
         @SuppressWarnings("serial")
         ArrayList<String> expected = new ArrayList<String>() {
@@ -28,6 +34,25 @@ public class ZipLineReaderTest {
                 add("1");
                 add("2");
                 add("3");
+            }
+        };
+
+        Assert.assertTrue(lines.equals(expected));
+    }
+
+    public void TestMultiFiles() throws IOException {
+        ZipLineIterator it = getZip("2.zip");
+        ArrayList<String> lines = readLines(it);
+
+        @SuppressWarnings("serial")
+        ArrayList<String> expected = new ArrayList<String>() {
+            {
+                add("1");
+                add("2");
+                add("3");
+                add("a");
+                add("b");
+                add("c");
             }
         };
 
