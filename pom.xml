@@ -9,7 +9,7 @@
   <url>https://bitbucket.org/tebeka/zipstream</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <cdh.version>cdh4.1.2</cdh.version>
+    <cdh.version>2.7.0</cdh.version>
     <surefire.plugin.version>2.11</surefire.plugin.version>
   </properties>
   <dependencies>
