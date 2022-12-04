@@ -1,5 +1,8 @@
 Zip Reader for Hadoop Streaming
 ===============================
+
+*I no longer maintain this repository, if you want to take over - drop me a line.*
+
 This is a reader that will return (filename, line) key value pairs for a zip
 file in Hadoop streaming.
 
@@ -38,6 +41,6 @@ FAQ
 | A. It uses the old(?) `mapreduce` API and doesn't work with CDH4
 
 | Q. Where does this project live?
-| A.  https://bitbucket.org/tebeka/zipstream
+| A.  https://github.com/tebeka/zipstream
 
 
